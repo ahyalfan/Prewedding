@@ -1,0 +1,258 @@
+
+/* dengan :root kita dapat membuat variabel di css */
+:root{
+    --pink: #db5168;
+    --bg: rgb(20, 19, 19);
+    --shadow: 0 2px 2px rgba(0 0 0 / 0.8);
+}
+
+body {
+    /* font-size: 1.2rem; artinya size rem adalah size default nya dlm px dikali 1,2 */
+    font-family: 'Work Sans', sans-serif;
+    min-height: 2000px;
+}
+
+/* main */
+.hero::before{ /* ini agar ketika di edit tidak berefek pada class hero */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(/img/background-main.jpg);
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    filter: grayscale();
+}
+.hero{
+    position: relative;
+    min-height: 100vh; /* artinya minimal panjangnya 1 layar atau 100vh mau berapapun panjang layar user maka tetap akan full*/
+}
+.hero h1, .hero h4, .hero p {
+    text-shadow: var(--shadow);
+}
+.hero h1{
+    font-family: 'Sacramento',cursive;
+    font-size: 6rem;   
+}
+
+/* hover dan tidak */
+.hero a,.btn-warna{
+    color: var(--pink);
+}
+.hero a:hover,.btn-warna:hover{
+    background-color: var(--pink);
+    color: white;
+}
+
+/* nav-edit */
+/* buat ngatasi error */
+.blur{
+    backdrop-filter: blur(3px);
+}
+.edit-nav{
+    /* backdrop-filter: blur(3px); */
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.edit-nav .offcanvas{
+    height: 100vh;
+}
+.edit-nav .navbar-brand,
+.edit-nav .offcanvas-title{font-family: 'Sacramento',cursive;font-size: 4.5rem;}
+.sticky-top{
+    overflow: hidden;
+}
+
+
+/* home */
+.home{
+    margin-top: -100px;
+    background-image: url(../img/img.png);
+    padding-top: 13rem;
+    /* background-position: center; */
+    /* background-size: cover; */
+}
+.home h2,.info h2,.story h2,.gallery h2{
+    color: #db5168;
+    font-size: 5rem;
+    font-family: 'sacramento',cursive;
+}
+.home h3{
+    color:rgb(54, 53, 53);
+    font-size: 1.5rem;
+}
+.home p{
+    color: rgb(41, 40, 40);
+    font-size: 1.1rem;
+}
+.home h4 ,.rsvp h4,.gift h4{
+    font-size: 3.5rem;
+    color: #db5168;
+    font-family: 'sacramento',cursive;
+}
+
+.info p{
+    color: rgb(246, 243, 243);
+    font-size: 1.1rem;
+}
+.info .card{
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    color: white;
+    border: 1px solid rgb(179, 176, 176);
+}
+.info .card-header{
+    border-bottom: 2px solid white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.story .fs,.gallery p{
+    font-size: 0.9rem;
+    color: rgb(41, 40, 40);
+}
+
+/* story */
+.timeline{
+    position: relative;
+    padding:1rem,0 ;
+    list-style: none;
+    padding-left: 0px;
+}
+/* membuat garis */
+.timeline::before{
+    content: "";
+    top: 0;
+    bottom: 0; /* ini gara saling tarik antar top samapi panjang listnya */
+    position: absolute;
+    background-color: rgb(48, 49, 46);
+    width: 1px;
+    left: 50%; /* ini agar ketengah */
+}
+.timeline li{
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+.timeline li::before,
+.timeline li::after{
+    content: "";
+    display: table;
+}
+.timeline li::after{
+    clear: both;
+}
+
+/* bulet */
+.timeline li .timeline-image {
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    left: 50%;
+    background-color: cadetblue;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* footer */
+.footer a{
+    color: black;
+}
+.footer a:hover,.footer span:hover{
+ color: white;
+}
+
+.audio{
+    bottom: 2rem;
+    right: 2rem;
+    cursor: pointer;
+    color: white;
+    opacity: .7;
+    mix-blend-mode: difference; /* ini mmebuat warnanya kebalikan dari background */
+}
+
+.audio .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate{
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+/* media query */
+
+/* 992 */
+@media (max-width:992px) {  
+    .timeline::before{
+        left: 70px;
+    }
+    .timeline li .timeline-image{
+        left:20px;
+        margin-left: 50px;
+        top: 15%;
+    }
+}
+/* tablet */
+@media (max-width:768px) {  
+    .hero h1{
+        font-size: 5rem;   
+    }
+    .hero p,.hero h4{
+        font-size: 95%;
+    }
+    .edit-nav .navbar-brand,
+    .edit-nav .offcanvas-title{
+        font-size: 4rem;
+    } 
+    /* timeline */
+    .timeline::before{
+        left: 40px;
+    }
+    .timeline li .timeline-image{
+        top: 30%;
+        left:20px;
+        margin-left: 20px;
+        width: 120px;
+        height: 120px;
+    }
+}
+/* smartphone */
+@media (max-width:576px) {  
+    .hero h1{
+        font-size: 3.7rem;
+    }
+    .hero p,.hero h4{
+        font-size: 85%;
+    }
+    .edit-nav .navbar-brand,
+    .edit-nav .offcanvas-title{
+        font-size: 3rem;
+    }   
+    .home{
+        margin-top: -75px;
+    }
+
+    /* timeline */
+    .timeline::before{
+        left: 30px;
+    }
+    .timeline li .timeline-image{
+        top: 35%;
+        left:10px;
+        margin-left: 20px;
+        width: 90px;
+        height: 90px;
+    }
+}
